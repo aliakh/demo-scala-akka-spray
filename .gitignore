@@ -1,0 +1,33 @@
+# Scala Files #
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Eclipse files #
+.settings
+.classpath
+.project
+
+# IntelliJ files #
+.idea
+local.properties
+*.iml
+
+# SBT files #
+.cache
+.history
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+# Local files #
+todo.txt
+*.zip
+*.log
