@@ -12,4 +12,4 @@ To make the next step, you can visit the GitHub repository and browse through th
 * make low-level and high-level HTTP client calls
 * change actor's behavior with become method
 
- To be continued.
+To be continued.

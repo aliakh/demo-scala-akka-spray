@@ -35,5 +35,6 @@ class RouterActor2(uri: Uri, requestContext: RequestContext) extends Actor {
 }
 
 object RouterActor2 {
+
   case class Route()
 }
