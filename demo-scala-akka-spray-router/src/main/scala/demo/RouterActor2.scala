@@ -22,9 +22,10 @@ class RouterActor2(uri: Uri, requestContext: RequestContext) extends Actor {
     case Route() =>
 
       val pipeline = sendReceive ~> unmarshal[Message]
-      val responseFuture: Future[Message] = pipeline { Get(uri) }
 
-      responseFuture.onComplete {
+      val response: Future[Message] = pipeline { Get(uri) }
+
+      response.onComplete {
         case Success(message) =>
           requestContext.complete(message)
           context.stop(self)
