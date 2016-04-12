@@ -1,2 +1,3 @@
 # demo-scala-akka-spray-aggregator
-part 3
+
+REST services with Scala, Akka, Spray: Part 3
