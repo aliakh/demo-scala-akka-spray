@@ -18,7 +18,7 @@ class RouterActor1(uri: Uri, requestContext: RequestContext) extends Actor {
   import context._
 
   def receive = LoggingReceive {
-    case _: Route =>
+    case Route() =>
       setReceiveTimeout(1.second)
       val restClient = context.actorOf(Props(classOf[RestClientActor], uri))
       restClient ! HttpRequest(GET, uri)

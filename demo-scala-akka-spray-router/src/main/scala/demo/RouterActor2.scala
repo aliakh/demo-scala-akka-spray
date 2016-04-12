@@ -9,6 +9,7 @@ import spray.http.Uri
 import spray.httpx.SprayJsonSupport._
 import spray.routing.RequestContext
 
+import scala.concurrent.Future
 import scala.util.{Failure, Success}
 
 class RouterActor2(uri: Uri, requestContext: RequestContext) extends Actor {
@@ -21,16 +22,17 @@ class RouterActor2(uri: Uri, requestContext: RequestContext) extends Actor {
     case Route() =>
 
       val pipeline = sendReceive ~> unmarshal[Message]
-      val responseFuture = pipeline {
-        Get(uri)
-      }
+      val responseFuture: Future[Message] = pipeline { Get(uri) }
 
       responseFuture.onComplete {
-        case Success(message) => requestContext.complete(message)
-        case Failure(error) => requestContext.complete(error)
-      }
+        case Success(message) =>
+          requestContext.complete(message)
+          context.stop(self)
 
-      context.stop(self)
+        case Failure(error) =>
+          requestContext.complete(error)
+          context.stop(self)
+      }
   }
 }
 
